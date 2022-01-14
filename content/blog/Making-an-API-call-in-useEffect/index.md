@@ -38,6 +38,8 @@ useEffect(() => {
 
 > The second parameter of the `useEffect` hook is the dependancy array `[]`. This has been left empty, which means this will trigger after the first render of the component (i.e. on page load).
 
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Making-an-API-call-in-useEffect/Recording%202022-01-14%20at%2013.35.40.gif?raw=true" width="600" height="400">
+
 ```js
 // Could go into useCallback here
 ```
