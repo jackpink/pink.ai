@@ -41,7 +41,7 @@ export const createAlbum = async albumName => {
 
 > This results in the behaviour shown below
 
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Making-an-API-call-in-useEffect/Recording%202022-01-14%20at%2013.35.40.gif?raw=true" width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Creating-asynchronously-and-updating-state/Recording%202022-01-14%20at%2015.30.31.gif?raw=true" width="600" height="400">
 
 The create function is sucessful and has added a new album to the database, but this is not updated in our front end.
 
