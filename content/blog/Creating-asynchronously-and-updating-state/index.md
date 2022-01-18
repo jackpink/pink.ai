@@ -128,4 +128,5 @@ useEffect(() => {
 
 Seems to work! But feels pretty hacky and messy
 
-> Also note the useEffect needlessly firing a second time in the console, after we change `createResult` to false.
+> Also note the useEffect needlessly firing a second time in the console, after we change `createResult` to false
+

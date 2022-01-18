@@ -1,10 +1,10 @@
 ---
-title: Refactor useEffect Call`:` Create Custom Hook
+title: "Refactor useEffect Call: Create Custom Hook"
 date: "2022-01-15T15:00:00.121Z"
 description: "Refactor our previous useEffect hook to be a custom hook that can be moved from our compoenent and also reused for other API endpoints"
 ---
 
-Currently we have a seperate function for making our API call with axious and some error handling, shown below.
+Currently we have a seperate function for making our API call with Axios and some error handling, shown below.
 
 ```js
 export const getAlbums = async () => {
