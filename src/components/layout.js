@@ -8,15 +8,33 @@ const Layout = ({ location, title, children }) => {
 
   if (isRootPath) {
     header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
-      </h1>
+      <>
+        <h1 className="main-heading">
+          <Link to="/">{title}</Link>
+        </h1>
+        <div className="nav">
+          <Link className="header-link-home" to="/tech-blog">
+            Tech Blog
+          </Link>
+          <Link className="header-link-home" to="/nrl-supercoach-ai">
+            NRL Supercoach AI
+          </Link>
+        </div>
+      </>
     )
   } else {
     header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
+      <>
+        <Link className="header-link-home" to="/">
+          {title}
+        </Link>
+        <Link className="header-link-home" to="/tech-blog">
+          Tech Blog
+        </Link>
+        <Link className="header-link-home" to="/nrl-supercoach-ai">
+          NRL Supercoach AI
+        </Link>
+      </>
     )
   }
 

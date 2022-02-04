@@ -284,6 +284,7 @@ a:focus {
   font-family: var(--font-heading);
   text-decoration: none;
   font-size: var(--fontSize-2);
+  margin-right: 5%;
 }
 
 .bio {
