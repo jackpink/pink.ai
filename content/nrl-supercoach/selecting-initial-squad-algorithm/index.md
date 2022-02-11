@@ -34,3 +34,34 @@ Knapsack(n):
                 M[i, w] = max( vi-1+M[i-1, w-wi-1] , M[i-1, w] )
             Else
                 M[i, w] =  M[i-1, w] 
+
+### Preprocessing before Knapsack Implementation
+
+The one major issue, with implementing a 0-1 dynamic programming knapsack algorithm to select the rest of the squad is that we do not know how many players the algorithm will select. It may determine that 10 players will yield the best result, but we know that 13 are required and therefore this answer will not work.  
+
+We can adapt the knapsack algorithm to force it to select an exact amount of players. If the number of players required is L, the Budget is B, price is p, value is v, maximum value V and number of players is n.
+
+We can add (B+1) to the price of every player
+
+And increase the budget by L(B+1)
+
+This will ensure that we do not select more than L players
+
+If we select L+1 players, then cost will be at least
+ (L+1)(B+1) = L(B+1) +B+1
+
+Whereas, the budget will be L(B+1) +B
+
+And  L(B+1) +B+1  >  L(B+1) +B 
+
+Now to ensure that we don’t select less than L players we can increase the value of each player by n(v+1)
+
+If we select L players our total value will be, L n (V+1) + original values
+
+If we select L-1 players our total values will be (L-1) n (V+1) + original values
+
+The difference between these two expressions ignoring original values is n (V+1)
+
+It is not possible for original values to be larger than nV
+
+As n (V+1)   >  nV, the amount of players will have the most impact on the total value. So the algorithm will maximise the amount of players and maximise their individual values
