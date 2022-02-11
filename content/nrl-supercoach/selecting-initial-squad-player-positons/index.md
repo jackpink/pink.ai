@@ -25,4 +25,4 @@ The first is we need to check whether the player we are trying to add can be add
 
 The other is that if both the player’s positions are full, it may still be possible to add the player by moving a player already in one of these positions to a position that’s free. An example of this is shown below. Even though the fullback position is full, Player 3 can be moved to the Centre Winger positions, hence freeing up space for Player 1.
 
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Making-an-API-call-in-useEffect/Recording%202022-01-14%20at%2013.35.40.gif?raw=true" width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/nrl-supercoach/selecting-initial-squad-player-positons/initial-squad-player-positions.jpg?raw=true" width="750" height="700">

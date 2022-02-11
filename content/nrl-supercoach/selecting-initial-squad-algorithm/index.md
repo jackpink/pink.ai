@@ -10,7 +10,7 @@ The Initial Squad selected will be a mix of high scoring players and cheap playe
 
 In this case we can search for Rookies that are playing in teams for round 1. These players will definitely be getting gametime for this round and the hope will be that they go on to play more in the future.  Some Rookies will be in the starting lineup and some will be on the bench. It can be seen in the figure above that starting players are more likely to score higher than those that are on the bench. For this reason starting players will be given priority.
 
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Making-an-API-call-in-useEffect/Recording%202022-01-14%20at%2013.35.40.gif?raw=true" width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/nrl-supercoach/selecting-initial-squad-algorithm/Boxplot-grouped-by-gametime.png?raw=true" width="600" height="400">
 
 A greedy algorithm can select all starting Rookies followed by Rookies who are on the bench. The more Rookies selected will increase the probability of making  higher profits. However, it will impact the overall performance as they are not expected to score highly. Therefore, a balance must be struck between Rookies and high scoring players. A cap will be put on the amount of Rookies that can be selected. This cap number will be determined through simulations.
 
@@ -27,6 +27,7 @@ OPT(i, w) = max( vi + OPT(i-1, w-wi), OPT(i-1, w)
 
 The dynamic programming solution of this is shown below.
 Knapsack(n):
+
     Array M[0 ... n, 0 ... W]
     For i = 1,2, ... , n
         For w = 1,2, ... , W

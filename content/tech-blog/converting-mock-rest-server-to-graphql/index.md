@@ -76,4 +76,4 @@ We destructured some of the orignal code in the REST server into the crud module
 
 With this we can now make a call from GraphiQL to get all our albums from the mock database.
 
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/converting-mock-rest-server-to-graphql/Screenshot%20from%202022-01-18%2011-00-18.png?raw=true" width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/tech-blog/converting-mock-rest-server-to-graphql/Screenshot%20from%202022-01-18%2011-00-18.png?raw=true" width="600" height="400">

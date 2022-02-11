@@ -41,7 +41,7 @@ export const createAlbum = async albumName => {
 
 > This results in the behaviour shown below
 
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Creating-asynchronously-and-updating-state/Recording%202022-01-14%20at%2015.30.31.gif?raw=true" width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/tech-blog/Creating-asynchronously-and-updating-state/Recording%202022-01-14%20at%2015.30.31.gif?raw=true" width="600" height="400">
 
 > `album3` cannot be seen in the dropdown
 
@@ -90,11 +90,11 @@ const createNewAlbum = async () => {
 
 How'd we do?
 
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Creating-asynchronously-and-updating-state/Recording%202022-01-15%20at%2011.19.00.gif?raw=true" width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/tech-blog/Creating-asynchronously-and-updating-state/Recording%202022-01-15%20at%2011.19.00.gif?raw=true" width="600" height="400">
 
 Looks pretty good, but hang on...
 
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Creating-asynchronously-and-updating-state/Recording%202022-01-15%20at%2011.21.16.gif?raw=true width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/tech-blog/Creating-asynchronously-and-updating-state/Recording%202022-01-15%20at%2011.21.16.gif?raw=true width="600" height="400">
 
 When we try to create another album, it doesnt work.
 
@@ -124,7 +124,7 @@ useEffect(() => {
 }, [createResult])
 ```
 
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/blog/Creating-asynchronously-and-updating-state/Recording%202022-01-15%20at%2011.50.17.gif?raw=true" width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/tech-blog/Creating-asynchronously-and-updating-state/Recording%202022-01-15%20at%2011.50.17.gif?raw=true" width="600" height="400">
 
 Seems to work! But feels pretty hacky and messy
 
