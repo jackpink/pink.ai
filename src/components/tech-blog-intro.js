@@ -29,7 +29,7 @@
          <p>
            {techBlogMeta.summary}
          </p>
-         <iframe src="https://giphy.com/embed/H48YKEw3fXrcvIF2xE" width="480" height="460" title="learning-gif" frameBorder="0" className="giphy-embed" allowFullScreen></iframe>
+         <img src="https://github.com/jackpink/pink.ai/blob/master/static/book-studying.gif?raw=true" width="440" height="460" />
      </div>
    )
  }
