@@ -10,13 +10,23 @@ module.exports = {
     social: {
       twitter: `kylemathews`,
     },
+    techBlog: {
+      summary: `This is basically a dumping ground for all the things I'm coming across as I learn to code `,
+    },
   },
   plugins: [
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/content/blog`,
+        path: `${__dirname}/content/tech-blog`,
+        name: `blog`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/nrl-supercoach`,
         name: `blog`,
       },
     },
