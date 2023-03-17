@@ -1,5 +1,5 @@
 ---
-title: Squad Selection Issues: Part 1
+title: "Squad Selection Issues: Part 1"
 date: "2023-03-11T11:00:00.121Z"
 description: "Figuring out why the algorithm makes the often strange decisions it does."
 ---
