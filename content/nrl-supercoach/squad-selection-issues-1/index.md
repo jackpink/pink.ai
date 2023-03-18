@@ -19,7 +19,7 @@ To start I will focus on the picking guns side of the algorithm, which is more i
 After running part 1 of the algorithm the following cheapies have been added to the squad.
 
 (INSERT SQUAD IMAGE HERE)
-<img src="https://github.com/jackpink/pink.ai/blob/master/content/nrl-supercoach/selecting-initial-squad-algorithm/Boxplot-grouped-by-gametime.png?raw=true" width="600" height="400">
+<img src="https://github.com/jackpink/pink.ai/blob/master/content/nrl-supercoach/squad-selection-issues-1/squad-1.jpg?raw=true?raw=true" width="100%" height="40%">
 
 The total cost of the selected players is $3,504,300
 
