@@ -1,45 +1,149 @@
 ---
-title: "Squad Selection Issues: Part 1"
+title: "Squad Selection Issues: Part 2"
 date: "2023-03-11T11:00:00.121Z"
-description: "Figuring out why the algorithm makes the often strange decisions it does."
+description: "Predicting player scores for upcoming season, to select better guns"
 ---
 
-## Squad Selection issues: Part 1
 
-**Another** year, another diastrous SC squad selection.
+If I could make a reasonable prediction of what each player will score for the upcoming season this will hopefully help me to select a better squad as outlined previously *********
 
-This year though I have decided to take a deep dive into my squad selection algorithm to disect why it so crap and to try make it better.
+At present, my algorithm uses the total points scored in the previous season to judge a players value. An example of this is the top 20 scoring players for the 2022 season.
 
-There are two main parts to the algorithm
-- Part 1: Picking Cheapies
-- Part 2: Picking Guns
+Side Note: In this process I actually found some problems with my database which needed fixing *********
 
-To start I will focus on the picking guns side of the algorithm, which is more interesting. Picking cheapies is essentially picking rookies and cheap players that are playing round 1 (will visit this later).
+<aside markdown="1">
+<table style="text-align: center; font-family: Arial; background-color: #C8C9C9; padding: 13px;">
+  <tr style="hover {background-color: coral;}; background-color: #494B4C; color: white; ">
+    <th style="border: 1px solid black;">Player</th>
+    <th style="border: 1px solid black;">Total Score in 2022</th>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">N. Hynes </td>
+   <td style="border: 1px solid black;">1973</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">I. Papalii </td>
+   <td style="border: 1px solid black;">1897</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">J. Tedesco</td>
+   <td style="border: 1px solid black">1828</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">D. Brown/td>
+   <td style="border: 1px solid black;">1782</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">J. Manu</td>
+   <td style="border: 1px solid black;">1752</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">C. Munster</td>
+   <td style="border: 1px solid black;">1693</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">C. Gutherson</td>
+   <td style="border: 1px solid black;">1636</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">K. Koloamatangi</td>
+   <td style="border: 1px solid black;">1599</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">A. Crichton</td>
+   <td style="border: 1px solid black;">1590</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">A. Johnson</td>
+   <td style="border: 1px solid black;">1559</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">H. Grant</td>
+   <td style="border: 1px solid black;">1552</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">R. Robson</td>
+   <td style="border: 1px solid black;">1547</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">M. Moses</td>
+   <td style="border: 1px solid black;">1544</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">J. Tapine</td>
+   <td style="border: 1px solid black;">1529</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">V. Holmes</td>
+   <td style="border: 1px solid black;">1515</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">S. Lane</td>
+   <td style="border: 1px solid black;">1514</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">B. Fermor</td>
+   <td style="border: 1px solid black;">1504</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">D. Cook</td>
+   <td style="border: 1px solid black;">1503</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">R. Garrick</td>
+   <td style="border: 1px solid black;">1482</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">T. Faasuamaleaui</td>
+   <td style="border: 1px solid black;">1473</td>
+  </tr>
+  <tr style="border: 1px solid black;">
+   <td style="border: 1px solid black;">H. Young</td>
+   <td style="border: 1px solid black;">1472</td>
+  </tr>
+</table>
+</aside>
 
-After running part 1 of the algorithm the following cheapies have been added to the squad.
 
+Using this to measure a players value led to  picking the following squad.
 
 <aside markdown="1">
 <h3 style="font-family: Arial;"> HOK </h3>
 <div class="players">
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">H. Grant</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: purple; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: white; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: purple; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">MEL</p>
+<p style="margin: 0px; font-family:Arial;">$ 816, 500</p>
+</div>
+</div>
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">D. Cook</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: green; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: red; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: green; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">STH</p>
+<p style="margin: 0px; font-family:Arial;">$ 790, 700</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -66,33 +170,57 @@ After running part 1 of the algorithm the following cheapies have been added to 
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">P. Saulo</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: #00FF00; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: white; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: #00FF00; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">CBR</p>
+<p style="margin: 0px; font-family:Arial;">$ 243, 000</p>
+</div>
+</div>
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">J. Tapine</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: #00FF00; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: white; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: #00FF00; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">CBR</p>
+<p style="margin: 0px; font-family:Arial;">$ 699, 500</p>
+</div>
+</div>
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">T. Faasuamaleaui</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: #6fa8dc; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: yellow; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: #6fa8dc; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">GCT</p>
+<p style="margin: 0px; font-family:Arial;">$ 704, 500</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -173,31 +301,40 @@ After running part 1 of the algorithm the following cheapies have been added to 
 </div>
 </div>
 
+
 <div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;">P. Saulo</p>
+<p style="margin: 0px; color: white; font-family:Arial;">I. Papalii</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
 <div style="display: flex;">
 
-<div style="width: 20px; height: auto; background-color: #00FF00; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: orange; display: inline-block;"></div>
 <div style="width: 20px; height: auto; background-color: white; display: inline-block;"></div>
-<div style="width: 20px; height: auto; background-color: #00FF00; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: black; display: inline-block;"></div>
 <div style="display: inline-block; padding-left: 10px;">
-<p style="margin: 0px; font-family:Arial;">CBR</p>
-<p style="margin: 0px; font-family:Arial;">$ 243, 000</p>
+<p style="margin: 0px; font-family:Arial;">WST</p>
+<p style="margin: 0px; font-family:Arial;">$ 831, 700</p>
 </div>
 </div>
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">K. Koloamatangi</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: green; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: red; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: green; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">STH</p>
+<p style="margin: 0px; font-family:Arial;">$ 701, 000</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -224,21 +361,6 @@ After running part 1 of the algorithm the following cheapies have been added to 
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
-<div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
-</div>
-<div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
-</div>
-</div>
-
-</div>
-
-<h3 style="font-family: Arial;"> 5/8 </h3>
-<div class="players">
-
 <div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
 <p style="margin: 0px; color: white; font-family:Arial;">I. Katoa</p>
@@ -257,13 +379,45 @@ After running part 1 of the algorithm the following cheapies have been added to 
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+
+</div>
+
+<h3 style="font-family: Arial;"> 5/8 </h3>
+<div class="players">
+
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">D. Brown</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: blue; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: yellow; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: blue; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">PAR</p>
+<p style="margin: 0px; font-family:Arial;">$ 781, 300</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div style="background-color: #494B4C; margin: 0px;  padding:5px;">
+<p style="margin: 0px; color: white; font-family:Arial;">C. Munster</p>
+</div>
+<div style="background-color: #C8C9C9; padding:10px;">
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: purple; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: white; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: purple; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">MEL</p>
+<p style="margin: 0px; font-family:Arial;">$ 848, 300</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -380,13 +534,21 @@ After running part 1 of the algorithm the following cheapies have been added to 
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">V. Holmes</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: yellow; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: white; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: blue; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">NQC</p>
+<p style="margin: 0px; font-family:Arial;">$ 724, 600</p>
+</div>
+</div>
 </div>
 </div>
 
@@ -413,18 +575,39 @@ After running part 1 of the algorithm the following cheapies have been added to 
 </div>
 </div>
 
-<div class="empty-player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
+<div class="player" style="border: 1px solid black; border-radius: 8px; width: 180px; overflow:hidden; display: inline-block;">
 <div style="background-color: #494B4C; margin: 0px;  padding:5px;">
-<p style="margin: 0px; color: white; font-family:Arial;"> Empty</p>
+<p style="margin: 0px; color: white; font-family:Arial;">C. Gutherson</p>
 </div>
 <div style="background-color: #C8C9C9; padding:10px;">
-<div style="width: 65px; display: inline-block;"></div>
-<p style="margin: 0px; font-size:xx-large; font-weight: bolder; display: inline-block;">+</p>
+<div style="display: flex;">
+
+<div style="width: 20px; height: auto; background-color: blue; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: yellow; display: inline-block;"></div>
+<div style="width: 20px; height: auto; background-color: blue; display: inline-block;"></div>
+<div style="display: inline-block; padding-left: 10px;">
+<p style="margin: 0px; font-family:Arial;">PAR</p>
+<p style="margin: 0px; font-family:Arial;">$ 717, 300</p>
+</div>
+</div>
 </div>
 </div>
 
 </div>
+
 </aside>
+
+You can obviously see alot of cross over between this squad and the top 20 scorers from 2022. It seems like I should be able to come up with a better metric for judging a players value.
+
+# Training NN to predict total scores
+
+TABLE (top 20 predicted scorers for 2023)
+
+SQUAD (using NN pred as value)
+
+# This looks better on face value, but lets investigate by simulating the results from previous seasons to test
+
+GRAPTH (results of simulations)
 
 The total cost of the selected players is $3,504,300
 
