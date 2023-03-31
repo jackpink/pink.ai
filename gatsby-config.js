@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Pink.ai`,
+    title: `pinkAI`,
     author: {
-      name: `Jack Pinkerton`,
-      summary: `I watch sport and occasionally write some code`,
+      name: `Jack Pink`,
+      summary: `A classic sport nerd`,
     },
     description: `A Tech and Sport Blog`,
     siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
@@ -13,6 +13,12 @@ module.exports = {
     techBlog: {
       summary: `This is basically a dumping ground for all the things I'm coming across as I learn to code `,
     },
+    rugbyLeague: {
+      summary: `COMING SOON...`,
+    },
+    nrlSupercoachAI: {
+      summary: `Analysing and improving my NRL Supercoach AI program. Which basically sucks, but hopefully one day won't...`,
+    },
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -20,6 +26,13 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/content/tech-blog`,
+        name: `blog`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/content/rugby-league`,
         name: `blog`,
       },
     },
