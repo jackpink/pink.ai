@@ -2,6 +2,7 @@ import * as React from "react"
 import { graphql } from "gatsby"
 
 import Bio from "../components/bio"
+import CurrentSCTeam from "../components/current-sc-team"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -26,6 +27,8 @@ const BlogIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All posts" />
+      <h2>SC Team</h2>
+      <CurrentSCTeam />
       <Bio />
       
     </Layout>

@@ -13,8 +13,8 @@ const Layout = ({ location, title, children }) => {
           <Link to="/">{title}</Link>
         </h1>
         <div className="nav">
-          <Link className="header-link-home" to="/tech-blog">
-            Tech Blog
+          <Link className="header-link-home" to="/rugby-league">
+            Rugby League
           </Link>
           <Link className="header-link-home" to="/nrl-supercoach-ai">
             NRL Supercoach AI
@@ -28,8 +28,8 @@ const Layout = ({ location, title, children }) => {
         <Link className="header-link-home" to="/">
           {title}
         </Link>
-        <Link className="header-link-home" to="/tech-blog">
-          Tech Blog
+        <Link className="header-link-home" to="/rugby-league">
+          Rugby League
         </Link>
         <Link className="header-link-home" to="/nrl-supercoach-ai">
           NRL Supercoach AI
