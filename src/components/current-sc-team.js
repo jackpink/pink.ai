@@ -57,26 +57,111 @@ const Player = ({name, team, price}) => {
 
 const Hooker = ({hooker}) => {
     console.log(hooker);
+    const centreDiv = {margin: 'auto', width: '180px'}
     return (
-        <Player name={hooker.name} team={hooker.team} price={hooker.price}/>
+        <div style={centreDiv}>
+            <Player name={hooker.name} team={hooker.team} price={hooker.price}/> 
+        </div>
+        
+    )
+}
+
+const FrontRow = ({frontRow}) => {
+    const frontRow1 = frontRow[0]
+    const frontRow2 = frontRow[1]
+    const centreDiv = {margin: 'auto', width: '97%'}
+    const rightForward = {display: 'inline-block', float: 'right'}
+    return (
+        <div style={centreDiv}>
+            <Player name={frontRow1.name} team={frontRow1.team} price={frontRow1.price}/>
+            <div style={rightForward}><Player name={frontRow2.name} team={frontRow2.team} price={frontRow2.price}/></div>
+            
+        </div>
+    )
+}
+
+const SecondRow = ({secondRow}) => {
+    const secondRow1 = secondRow[0]
+    const secondRow2 = secondRow[1]
+    const secondRow3 = secondRow[2]
+    const centreDiv = {margin: 'auto'}
+    const rightForward = {display: 'inline-block', float: 'right'}
+    const lockDiv = {margin: 'auto', width: '180px'}
+    return (
+        <div style={centreDiv} className='second-row-width' >
+            <Player name={secondRow1.name} team={secondRow1.team} price={secondRow1.price}/>
+            <div style={rightForward}><Player name={secondRow2.name} team={secondRow2.team} price={secondRow2.price}/></div>
+            <div style={lockDiv}>
+                <Player name={secondRow3.name} team={secondRow3.team} price={secondRow3.price}/> 
+            </div>
+        </div>
+    )
+}
+
+const Halfback = ({halfback}) => {
+    
+    const leftDiv = {marginLeft: '10%'}
+    return (
+        <div className="halfback-left">
+            <Player name={halfback.name} team={halfback.team} price={halfback.price}/> 
+        </div>
+        
+    )
+}
+
+const FiveEight = ({fiveEight}) => {
+    
+    const rightDiv = {marginLeft: '60%'}
+    return (
+        <div className="five-eight-right">
+            <Player name={fiveEight.name} team={fiveEight.team} price={fiveEight.price}/> 
+        </div>
+        
+    )
+}
+
+const CentreWinger = ({centreWinger}) => {
+    const centreWinger1 = centreWinger[0]
+    const centreWinger2 = centreWinger[1]
+    const centreWinger3 = centreWinger[2]
+    const centreWinger4 = centreWinger[3]
+    const padding = {padding: '10px', paddingTop: '40px'}
+    const flexBox = {display: 'flex', flexFlow: 'row wrap', margin: 'auto'}
+    return (
+        <div style={flexBox} className="centre-winger-width" >
+            <div style={padding}><Player name={centreWinger1.name} team={centreWinger1.team} price={centreWinger1.price}/></div>
+            <div style={padding}><Player name={centreWinger2.name} team={centreWinger2.team} price={centreWinger2.price}/></div>
+            <div style={padding}><Player name={centreWinger3.name} team={centreWinger3.team} price={centreWinger3.price}/></div>
+            <div style={padding}><Player name={centreWinger4.name} team={centreWinger4.team} price={centreWinger4.price}/></div>
+        </div>
+    )
+}
+
+const Fullback = ({fullback}) => {
+    const centreDiv = {margin: 'auto', width: '180px'}
+    return (
+        <div style={centreDiv}>
+            <Player name={fullback.name} team={fullback.team} price={fullback.price}/> 
+        </div>
+        
     )
 }
 
 const CurrentSCTeam = () => {
 
-    const FRF = [{name: 'J. Tapine', team: 'MEL', price: '$ 699, 500'},
-                {name: 'T. Faasuamaleaui', team: 'MEL', price: '$ 704, 500'}]
+    const FRF = [{name: 'J. Tapine', team: 'CBR', price: '$ 699, 500'},
+                {name: 'T. Faasuamaleaui', team: 'GCT', price: '$ 704, 500'}]
     const HOK = {name: 'H. Grant', team: 'MEL', price: '$816,500'}
-    const SRF = [{name: 'I. Papalii', team: 'MEL', price: '$ 831, 700'},
-                {name: 'K. Koloamatangi', team: 'MEL', price: '$ 701, 000'},
-                {name: 'B. Cartwright', team: 'MEL', price: '$ 234, 800'}]
-    const HFB = {name: 'H. Grant', team: 'MEL', price: '$816,500'}
-    const FE = {name: 'H. Grant', team: 'MEL', price: '$816,500'}
-    const CTW = [{name: 'H. Grant', team: 'MEL', price: '$816,500'},
-                {name: 'H. Grant', team: 'MEL', price: '$816,500'},
-                {name: 'H. Grant', team: 'MEL', price: '$816,500'},
-                {name: 'H. Grant', team: 'MEL', price: '$816,500'}]
-    const FLB = {name: 'H. Grant', team: 'MEL', price: '$816,500'}
+    const SRF = [{name: 'I. Papalii', team: 'WST', price: '$ 831, 700'},
+                {name: 'K. Koloamatangi', team: 'STH', price: '$ 701, 000'},
+                {name: 'B. Cartwright', team: 'PAR', price: '$ 234, 800'}]
+    const HFB = {name: 'B. Trindall', team: 'SHA', price: '$ 234, 800'}
+    const FE = {name: 'C. Munster', team: 'MEL', price: '$ 848, 300'}
+    const CTW = [{name: 'V. Holmes', team: 'NQC', price: '$ 724, 600'},
+                {name: 'H. Smith-Shields', team: 'CBR', price: '$ 300, 300'},
+                {name: 'H. Hunt', team: 'NEW', price: '$ 234, 800'},
+                {name: 'B. Wiliame', team: 'NZW', price: '$ 234, 800'}]
+    const FLB = {name: 'C. Gutherson', team: 'PAR', price: '$ 717, 300'}
     const Bench = [{name: 'D. Cook', team: 'STH', price: '$790,700'},
                 {name: 'H. Grant', team: 'MEL', price: '$816,500'},
                 {name: 'H. Grant', team: 'MEL', price: '$816,500'},
@@ -85,7 +170,13 @@ const CurrentSCTeam = () => {
     console.log(HOK)
     return (
         <div className="current-sc-team">
-        <Hooker hooker={HOK} />
+            <Hooker hooker={HOK} />
+            <FrontRow frontRow={FRF} />
+            <SecondRow secondRow={SRF} />
+            <Halfback halfback={HFB} />
+            <FiveEight fiveEight={FE} />
+            <CentreWinger centreWinger={CTW} />
+            <Fullback fullback={FLB} />
         </div>
     )
 }
