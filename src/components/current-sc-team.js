@@ -20,13 +20,19 @@ const teamDict = {
     
 }
 
-const Player = ({name, team, price}) => {
+const Player = ({name, team, price, reserve = false}) => {
     const teamColours = teamDict[team]
     console.log(team)
+    var playerNameDivStyle = {backgroundColor: '#494B4C', margin: '0px',  padding:'5px'}
+    var innerDivStyle = {backgroundColor: '#C8C9C9', padding:'10px'}
+    if (reserve === true) {
+        playerNameDivStyle['backgroundColor'] = '#660066'
+        innerDivStyle['backgroundColor'] = '#d8b2d8'
+
+    }
     const outerDivStyle = {border: '1px solid black', borderRadius: '8px', width: '180px', overflow:'hidden', display: 'inline-block'}
-    const playerNameDivStyle = {backgroundColor: '#494B4C', margin: '0px',  padding:'5px'}
     const playerNameStyle = {margin: '0px', color: 'white', fontFamily:'Arial'}
-    const innerDivStyle = {backgroundColor: '#C8C9C9', padding:'10px'}
+    
     const flexBox = {display: 'flex'}
     const teamColourOne = {width: '20px', height: 'auto', backgroundColor: teamColours[0], display: 'inline-block'}
     const teamColourTwo = {width: '20px', height: 'auto', backgroundColor: teamColours[1], display: 'inline-block'}
@@ -147,6 +153,23 @@ const Fullback = ({fullback}) => {
     )
 }
 
+const Reserves = ({reserve}) => {
+    const reserve1 = reserve[0]
+    const reserve2 = reserve[1]
+    const reserve3 = reserve[2]
+    const reserve4 = reserve[3]
+    const padding = {padding: '10px', paddingTop: '40px'}
+    const flexBox = {display: 'flex', flexFlow: 'row wrap', margin: 'auto'}
+    return (
+        <div style={flexBox} className=" reserves-width" >
+            <div style={padding}><Player name={reserve1.name} team={reserve1.team} price={reserve1.price} reserve={true}/></div>
+            <div style={padding}><Player name={reserve2.name} team={reserve2.team} price={reserve2.price} reserve={true}/></div>
+            <div style={padding}><Player name={reserve3.name} team={reserve3.team} price={reserve3.price} reserve={true}/></div>
+            <div style={padding}><Player name={reserve4.name} team={reserve4.team} price={reserve4.price} reserve={true}/></div>
+        </div>
+    )
+}
+
 const CurrentSCTeam = () => {
 
     const FRF = [{name: 'J. Tapine', team: 'CBR', price: '$ 699, 500'},
@@ -163,20 +186,26 @@ const CurrentSCTeam = () => {
                 {name: 'B. Wiliame', team: 'NZW', price: '$ 234, 800'}]
     const FLB = {name: 'C. Gutherson', team: 'PAR', price: '$ 717, 300'}
     const Bench = [{name: 'D. Cook', team: 'STH', price: '$790,700'},
-                {name: 'H. Grant', team: 'MEL', price: '$816,500'},
-                {name: 'H. Grant', team: 'MEL', price: '$816,500'},
-                {name: 'H. Grant', team: 'MEL', price: '$816,500'}]
+                {name: 'D. Brown', team: 'PAR', price: '$ 781, 300'},
+                {name: 'C. Allan', team: 'SYD', price: '$ 258, 100'},
+                {name: 'S. Keppie', team: 'MNL', price: '$ 274, 800'}]
     const NS = []
     console.log(HOK)
+
+    const flexBox = {display: 'flex', flexFlow: 'row wrap', margin: 'auto'}
+    const inlineBlock = {display: 'inline-block'}
     return (
-        <div className="current-sc-team">
-            <Hooker hooker={HOK} />
-            <FrontRow frontRow={FRF} />
-            <SecondRow secondRow={SRF} />
-            <Halfback halfback={HFB} />
-            <FiveEight fiveEight={FE} />
-            <CentreWinger centreWinger={CTW} />
-            <Fullback fullback={FLB} />
+        <div className="current-sc-team" style={flexBox}>
+            <div style={inlineBlock} className="team-width">
+                <Hooker hooker={HOK} />
+                <FrontRow frontRow={FRF} />
+                <SecondRow secondRow={SRF} />
+                <Halfback halfback={HFB} />
+                <FiveEight fiveEight={FE} />
+                <CentreWinger centreWinger={CTW} />
+                <Fullback fullback={FLB} />
+            </div>
+            <div style={inlineBlock} ><Reserves reserve={Bench} /></div>
         </div>
     )
 }

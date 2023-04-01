@@ -337,11 +337,28 @@ a:focus {
 .centre-winger-width {
   width: 800px
 }
+
+.team-width {
+  width: 800px
+}
+
+.reserves-width {
+  width: 200px
+}
 /* Media queries */
+
+@media (max-width: 1060px) {
+  .reserves-width{
+    width: 800px
+  }
+}
 
 @media (max-width: 820px) {
   .centre-winger-width {
     width: 400px
+  }
+  .reserves-width {
+    width: 640px
   }
 }
 
@@ -358,9 +375,12 @@ a:focus {
   .halfback-left {
     margin-left: 15%
   }
+  .reserves-width {
+    width: 400px
+  }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 540px) {
   .second-row-width {
     width: 85%
   }
